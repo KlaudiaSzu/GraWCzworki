@@ -48,11 +48,11 @@ def saveStats(player,id, result):
             gamesLost = 1
         pd.DataFrame([[player,1,gamesWon,gamesTied,gamesLost]]).to_csv('playersDatabase.csv', mode='a', header=None, index=False)
 
-def menu(message):
+def menu():
     while True:
         clear()
 
-        print(message)
+        print("GRA W CZWORKI\n")
         print("1: Nowa Gra")
         print("2: Importuj Gre")
         print("3: Pokaz ranking")
@@ -77,23 +77,23 @@ def winning_move(board, piece, width, height):
     #check horizontal locations
     for c in range(width-3):
         for r in range(height):
-            if board[r][c] == piece and board[r][c+1] and board[r][c+2]==piece and board[r][c+3] == piece:
+            if board[r][c] == piece and board[r][c+1] == piece and board[r][c+2]==piece and board[r][c+3] == piece:
                 return True
     # vertical locations
     for c in range(width):
         for r in range(height-3):
-            if board[r][c] == piece and board[r+1][c] and board[r+2][c]==piece and board[r+3][c] == piece:
+            if board[r][c] == piece and board[r+1][c] == piece and board[r+2][c]==piece and board[r+3][c] == piece:
                 return True
     # posit slop
     for c in range(width-3):
         for r in range(height-3):
-            if board[r][c] == piece and board[r+1][c+1] and board[r+2][c+2]==piece and board[r+3][c+3] == piece:
+            if board[r][c] == piece and board[r+1][c+1] == piece and board[r+2][c+2]==piece and board[r+3][c+3] == piece:
                 return True
 
     # negative slop
     for c in range(width-3):
         for r in range(3, height):
-            if board[r][c] == piece and board[r-1][c+1] and board[r-2][c+2]==piece and board[r-3][c+3] == piece:
+            if board[r][c] == piece and board[r-1][c+1] == piece and board[r-2][c+2]==piece and board[r-3][c+3] == piece:
                 return True
 
 def get_row(board, column, height):
@@ -288,8 +288,8 @@ def main():
         }
         pd.DataFrame(database).to_csv('playersDatabase.csv', index=False)
 
-    message = "GRA W CZWORKI\n"
-    wybor = menu(message)
+
+    wybor = menu()
     if wybor == 0:
         print('Program zakonczono')
         return 0
